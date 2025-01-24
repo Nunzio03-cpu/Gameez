@@ -19,6 +19,7 @@ public class Prodotto {
     @Lob//Serve per lunghe descrizioni
     private String descrizione;
 
+    @Column(columnDefinition = "VARCHAR(255)")
     @Enumerated(EnumType.STRING)
     private PiattaformaEnum piattaforma;
 
