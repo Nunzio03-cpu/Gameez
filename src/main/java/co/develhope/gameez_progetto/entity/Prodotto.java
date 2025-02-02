@@ -3,7 +3,7 @@ package co.develhope.gameez_progetto.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Prodotto")
+@Table(name = "prodotto")
 public class Prodotto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +17,7 @@ public class Prodotto {
     @Column(name = "descrizione")
     @Lob//Serve per lunghe descrizioni
     private String descrizione;
-    @Column(name = "piattaforma", columnDefinition = "VARCHAR(255)")
+    @Column(name = "piattaforma")
     @Enumerated(EnumType.STRING)
     private PiattaformaEnum piattaforma;
 
