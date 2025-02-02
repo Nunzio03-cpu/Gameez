@@ -8,18 +8,16 @@ public class Prodotto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "Titolo", nullable = false, length = 255)
+    @Column(name = "titolo", nullable = false, length = 255)
     private String titolo;
-
+    @Column(name = "prezzo")
     private Double prezzo;
-
+    @Column(name = "anno_di_pubblicazione")
     private Integer annoDiPubblicazione;
-
+    @Column(name = "descrizione")
     @Lob//Serve per lunghe descrizioni
     private String descrizione;
-
-    @Column(columnDefinition = "VARCHAR(255)")
+    @Column(name = "piattaforma", columnDefinition = "VARCHAR(255)")
     @Enumerated(EnumType.STRING)
     private PiattaformaEnum piattaforma;
 

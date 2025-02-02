@@ -8,19 +8,24 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(name = "nome")
     private String nome;
+    @Column(name = "cognome")
     private String cognome;
+    @Column(name = "nickname")
     private String nickName;
+    @Column(name = "email")
     private String email;
+    @Column(name = "password")
     private String password;
-
     @Column(name = "data_nascita")
     private String dataNascita;
-    @Column(name = "Città")
+    @Column(name = "città")
     private String citta;
+    @Column(name = "indirizzo")
+    private String indirizzo;
 
-    public User(Long id, String nome, String cognome, String nickName, String email, String password, String dataNascita, String citta) {
+    public User(Long id, String nome, String cognome, String nickName, String email, String password, String dataNascita, String citta, String indirizzo) {
         this.id = id;
         this.nome = nome;
         this.cognome = cognome;
@@ -29,6 +34,7 @@ public class User {
         this.password = password;
         this.dataNascita = dataNascita;
         this.citta = citta;
+        this.indirizzo = indirizzo;
     }
 
     public Long getId() {
@@ -93,5 +99,13 @@ public class User {
 
     public void setCitta(String citta) {
         this.citta = citta;
+    }
+
+    public String getIndirizzo() {
+        return indirizzo;
+    }
+
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
     }
 }
