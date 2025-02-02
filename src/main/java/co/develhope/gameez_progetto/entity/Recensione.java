@@ -1,7 +1,6 @@
 package co.develhope.gameez_progetto.entity;
 
 import jakarta.persistence.*;
-import org.hibernate.internal.log.SubSystemLogging;
 
 import java.time.LocalDate;
 
