@@ -8,13 +8,14 @@ public class Prodotto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    //todo eliminare il length
     @Column(name = "titolo", nullable = false, length = 255)
     private String titolo;
     @Column(name = "prezzo")
     private Double prezzo;
     @Column(name = "anno_di_pubblicazione")
     private Integer annoDiPubblicazione;
-    @Column(name = "descrizione")
+    @Column(name = "descrizione", length = 1000)
     @Lob//Serve per lunghe descrizioni
     private String descrizione;
     @Column(name = "piattaforma")
