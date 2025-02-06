@@ -5,28 +5,34 @@ import jakarta.persistence.Table;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "carrello")
 public class Carrello {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "user", nullable = false)
     private User user;
-    @ManyToOne
-    @JoinColumn(name = "prodotto_id", nullable = false)
-    private Prodotto prodotto;
+    @OneToMany(mappedBy = "carrello")
+    private List<Prodotto> prodotti;
 
     public Carrello() {}
 
-    public Carrello(User user, Prodotto prodotto) {
+    public Carrello(Long id, User user, List<Prodotto> prodotti) {
+        this.id = id;
         this.user = user;
-        this.prodotto = prodotto;
+        this.prodotti = prodotti;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public User getUser() {
@@ -37,12 +43,12 @@ public class Carrello {
         this.user = user;
     }
 
-    public Prodotto getProdotto() {
-        return prodotto;
+    public List<Prodotto> getProdotti() {
+        return prodotti;
     }
 
-    public void setProdotto(Prodotto prodotto) {
-        this.prodotto = prodotto;
+    public void setProdotti(List<Prodotto> prodotti) {
+        this.prodotti = prodotti;
     }
 }
 

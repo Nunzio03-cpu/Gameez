@@ -16,15 +16,13 @@ public class Recensione {
     @Lob
     private String commento;
     @ManyToOne
-    @JoinColumn(name = "id_user", nullable = false)
+    @JoinColumn(name = "user", nullable = false)
     private User user;
     @ManyToOne
-    @JoinColumn(name = "id_prodotto", nullable = false)
+    @JoinColumn(name = "prodotto", nullable = false)
     private Prodotto prodotto;
 
-
-    public Recensione() {
-    }
+    public Recensione() {}
 
     public Recensione(Long id, LocalDate data, String commento, User user, Prodotto prodotto) {
         this.id = id;
@@ -58,19 +56,19 @@ public class Recensione {
         this.commento = commento;
     }
 
-    public Prodotto getProdotto() {
-        return prodotto;
-    }
-
-    public void setProdotto(Prodotto prodotto) {
-        this.prodotto = prodotto;
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Prodotto getProdotto() {
+        return prodotto;
+    }
+
+    public void setProdotto(Prodotto prodotto) {
+        this.prodotto = prodotto;
     }
 }

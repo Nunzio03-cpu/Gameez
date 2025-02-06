@@ -2,14 +2,15 @@ package co.develhope.gameez_progetto.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "prodotto")
 public class Prodotto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //todo eliminare il length
-    @Column(name = "titolo", nullable = false, length = 255)
+    @Column(name = "titolo", nullable = false)
     private String titolo;
     @Column(name = "prezzo")
     private Double prezzo;
@@ -21,14 +22,57 @@ public class Prodotto {
     @Column(name = "piattaforma")
     @Enumerated(EnumType.STRING)
     private PiattaformaEnum piattaforma;
+    @ManyToOne
+    @JoinColumn(name = "carrello")
+    private Carrello carrello;
+    @ManyToOne
+    @JoinColumn(name = "recensioni")
+    private List<Recensione> recensioni;
 
-    public Prodotto(String descrizione, Integer annoDiPubblicazione, Double prezzo, String titolo, Long id, PiattaformaEnum piattaforma) {
-        this.descrizione = descrizione;
-        this.annoDiPubblicazione = annoDiPubblicazione;
-        this.prezzo = prezzo;
-        this.titolo = titolo;
+    public Prodotto(){}
+
+    public Prodotto(Long id, String titolo, Double prezzo, Integer annoDiPubblicazione, String descrizione,
+                    PiattaformaEnum piattaforma, Carrello carrello, List<Recensione> recensioni) {
         this.id = id;
+        this.titolo = titolo;
+        this.prezzo = prezzo;
+        this.annoDiPubblicazione = annoDiPubblicazione;
+        this.descrizione = descrizione;
         this.piattaforma = piattaforma;
+        this.carrello = carrello;
+        this.recensioni = recensioni;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitolo() {
+        return titolo;
+    }
+
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
+    }
+
+    public Double getPrezzo() {
+        return prezzo;
+    }
+
+    public void setPrezzo(Double prezzo) {
+        this.prezzo = prezzo;
+    }
+
+    public Integer getAnnoDiPubblicazione() {
+        return annoDiPubblicazione;
+    }
+
+    public void setAnnoDiPubblicazione(Integer annoDiPubblicazione) {
+        this.annoDiPubblicazione = annoDiPubblicazione;
     }
 
     public String getDescrizione() {
@@ -47,35 +91,19 @@ public class Prodotto {
         this.piattaforma = piattaforma;
     }
 
-    public Integer getAnnoDiPubblicazione() {
-        return annoDiPubblicazione;
+    public Carrello getCarrello() {
+        return carrello;
     }
 
-    public void setAnnoDiPubblicazione(Integer annoDiPubblicazione) {
-        this.annoDiPubblicazione = annoDiPubblicazione;
+    public void setCarrello(Carrello carrello) {
+        this.carrello = carrello;
     }
 
-    public String getTitolo() {
-        return titolo;
+    public List<Recensione> getRecensioni() {
+        return recensioni;
     }
 
-    public void setTitolo(String titolo) {
-        this.titolo = titolo;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Double getPrezzo() {
-        return prezzo;
-    }
-
-    public void setPrezzo(Double prezzo) {
-        this.prezzo = prezzo;
+    public void setRecensioni(List<Recensione> recensioni) {
+        this.recensioni = recensioni;
     }
 }
