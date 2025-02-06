@@ -2,6 +2,8 @@ package co.develhope.gameez_progetto.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "user")
 public class User {
@@ -24,8 +26,13 @@ public class User {
     private String citta;
     @Column(name = "indirizzo")
     private String indirizzo;
+    @OneToMany(mappedBy = "user")
+    private List<Recensione> recensioni;
 
-    public User(Long id, String nome, String cognome, String nickName, String email, String password, String dataNascita, String citta, String indirizzo) {
+    public User (){}
+
+    public User(Long id, String nome, String cognome, String nickName, String email, String password,
+                String dataNascita, String citta, String indirizzo, List<Recensione> recensioni) {
         this.id = id;
         this.nome = nome;
         this.cognome = cognome;
@@ -35,6 +42,7 @@ public class User {
         this.dataNascita = dataNascita;
         this.citta = citta;
         this.indirizzo = indirizzo;
+        this.recensioni = recensioni;
     }
 
     public Long getId() {
@@ -107,5 +115,13 @@ public class User {
 
     public void setIndirizzo(String indirizzo) {
         this.indirizzo = indirizzo;
+    }
+
+    public List<Recensione> getRecensioni() {
+        return recensioni;
+    }
+
+    public void setRecensioni(List<Recensione> recensioni) {
+        this.recensioni = recensioni;
     }
 }
