@@ -16,7 +16,7 @@ public class Carrello {
     @OneToOne
     @JoinColumn(name = "user", nullable = false)
     private User user;
-    @OneToMany(mappedBy = "carrello")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Prodotto> prodotti;
 
     public Carrello() {}
