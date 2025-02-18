@@ -27,6 +27,7 @@ public class User {
     @Column(name = "indirizzo")
     private String indirizzo;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "recensione_id")
     private List<Recensione> recensioni;
 
     public User (){}
