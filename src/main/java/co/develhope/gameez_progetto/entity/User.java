@@ -26,7 +26,7 @@ public class User {
     private String citta;
     @Column(name = "indirizzo")
     private String indirizzo;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Recensione> recensioni;
 
     public User (){}
