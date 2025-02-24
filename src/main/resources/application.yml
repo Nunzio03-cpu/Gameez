@@ -3,7 +3,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/gameez_progetto
     username: root
-    password:
+    password: C1@0m0nd0
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:

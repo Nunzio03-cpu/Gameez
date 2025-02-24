@@ -1,11 +1,11 @@
 package co.develhope.gameez_progetto.service;
 
-import co.develhope.gameez_progetto.repository.GameezRepository;
+import co.develhope.gameez_progetto.repository.OrdineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GameezService {
+public class OrdineService {
     @Autowired
-    private GameezRepository gameezRepository;
+    private OrdineRepository ordineRepository;
 }

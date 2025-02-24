@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "ordini")
-public class Ordini {
+public class Ordine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,10 +14,10 @@ public class Ordini {
     @JoinColumn(name = "carello", nullable = false)
     private Carrello carrello;
 
-    public Ordini() {
+    public Ordine() {
     }
 
-    public Ordini(Long id, Double costoSpedizione, Carrello carrello) {
+    public Ordine(Long id, Double costoSpedizione, Carrello carrello) {
         this.id = id;
         this.costoSpedizione = costoSpedizione;
         this.carrello = carrello;
