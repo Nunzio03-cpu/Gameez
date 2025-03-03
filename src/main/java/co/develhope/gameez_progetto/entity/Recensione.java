@@ -14,6 +14,8 @@ public class Recensione {
     private LocalDate data;
     @Column(name = "commento")
     private String commento;
+    @Column(name = "status_recensione")
+    private boolean statusUser;
 
     public Recensione() {}
 
@@ -21,6 +23,7 @@ public class Recensione {
         this.id = id;
         this.data = data;
         this.commento = commento;
+        this.statusUser = true;
 
     }
 
@@ -48,5 +51,11 @@ public class Recensione {
         this.commento = commento;
     }
 
+    public boolean isStatusUser() {
+        return statusUser;
+    }
 
+    public void setStatusUser(boolean statusUser) {
+        this.statusUser = statusUser;
+    }
 }

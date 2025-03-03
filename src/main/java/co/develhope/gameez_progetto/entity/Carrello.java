@@ -21,6 +21,8 @@ public class Carrello {
     private List<Prodotto> prodotti;
     @Column(name = "calcolo_totale")
     private Double calcoloTotale;
+    @Column(name= "status_carrello")
+    private boolean statusCarrello;
 
 
 
@@ -30,6 +32,7 @@ public class Carrello {
         this.id = id;
         this.user = user;
         this.prodotti = prodotti;
+        this.statusCarrello = true;
     }
 
     public Long getId() {
@@ -62,6 +65,14 @@ public class Carrello {
 
     public void setCalcoloTotale(Double calcoloTotale) {
         this.calcoloTotale = calcoloTotale;
+    }
+
+    public boolean isStatusCarrello() {
+        return statusCarrello;
+    }
+
+    public void setStatusCarrello(boolean statusCarrello) {
+        this.statusCarrello = statusCarrello;
     }
 }
 

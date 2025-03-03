@@ -29,6 +29,8 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "recensione_id")
     private List<Recensione> recensioni;
+    @Column(name = "status_user")
+    private boolean statusUser;
 
     public User (){}
 
@@ -44,6 +46,7 @@ public class User {
         this.citta = citta;
         this.indirizzo = indirizzo;
         this.recensioni = recensioni;
+        this.statusUser = true;
     }
 
     public Long getId() {
@@ -124,5 +127,13 @@ public class User {
 
     public void setRecensioni(List<Recensione> recensioni) {
         this.recensioni = recensioni;
+    }
+
+    public boolean isStatusUser() {
+        return statusUser;
+    }
+
+    public void setStatusUser(boolean statusUser) {
+        this.statusUser = statusUser;
     }
 }

@@ -24,6 +24,8 @@ public class Prodotto {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "recensione_id")
     private List<Recensione> recensioni;
+    @Column(name = "status_prodotto")
+    private boolean statusProdotto;
 
     public Prodotto(){}
 
@@ -36,6 +38,7 @@ public class Prodotto {
         this.descrizione = descrizione;
         this.piattaforma = piattaforma;
         this.recensioni = recensioni;
+        this.statusProdotto = true;
     }
 
     public Long getId() {
@@ -93,5 +96,13 @@ public class Prodotto {
 
     public void setRecensioni(List<Recensione> recensioni) {
         this.recensioni = recensioni;
+    }
+
+    public boolean isStatusProdotto() {
+        return statusProdotto;
+    }
+
+    public void setStatusProdotto(boolean statusProdotto) {
+        this.statusProdotto = statusProdotto;
     }
 }

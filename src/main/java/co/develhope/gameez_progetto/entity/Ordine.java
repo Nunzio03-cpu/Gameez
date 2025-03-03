@@ -13,6 +13,8 @@ public class Ordine {
     @OneToOne
     @JoinColumn(name = "carello", nullable = false)
     private Carrello carrello;
+    @Column(name = "status_ordine")
+    private boolean statusOrdine;
 
     public Ordine() {
     }
@@ -21,6 +23,7 @@ public class Ordine {
         this.id = id;
         this.costoSpedizione = costoSpedizione;
         this.carrello = carrello;
+        this.statusOrdine = true;
     }
 
     public Long getId() {
@@ -45,5 +48,13 @@ public class Ordine {
 
     public void setCarrello(Carrello carrello) {
         this.carrello = carrello;
+    }
+
+    public boolean isStatusOrdine() {
+        return statusOrdine;
+    }
+
+    public void setStatusOrdine(boolean statusOrdine) {
+        this.statusOrdine = statusOrdine;
     }
 }
