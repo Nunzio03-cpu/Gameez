@@ -13,6 +13,7 @@ public class Ordine {
     @OneToOne
     @JoinColumn(name = "carello", nullable = false)
     private Carrello carrello;
+    //todo IN DATA 04/03 SOLITAMENTE FUNZIONA CIT.NUNZIO
     @Column(name = "status_ordine")
     private boolean statusOrdine;
 
