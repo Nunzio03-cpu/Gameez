@@ -1,13 +1,13 @@
 driver-class-name: com.mysql.cj.jdbc.Driver
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/gameez_progetto
+spring:                                                                 # SOSTITUIRE:
+  datasource:                                                           # test_gameez (se volete create sul database per testare)
+    url: jdbc:mysql://localhost:3306/gameez_progetto                    #             (inserisci qui accanto il canceletto il nome del progetto originale)
     username: root
     password:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:

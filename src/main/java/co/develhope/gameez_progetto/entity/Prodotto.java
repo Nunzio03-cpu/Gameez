@@ -18,9 +18,11 @@ public class Prodotto {
     private Integer annoDiPubblicazione;
     @Column(name = "descrizione", length = 1000)
     private String descrizione;
+    @ElementCollection(targetClass = PiattaformaEnum.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "prodotto_piattaforme", joinColumns = @JoinColumn(name = "prodotto_id"))
     @Column(name = "piattaforma")
     @Enumerated(EnumType.STRING)
-    private PiattaformaEnum piattaforma;
+    private List<PiattaformaEnum> piattaforma;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "recensione_id")
     private List<Recensione> recensioni;
@@ -30,7 +32,7 @@ public class Prodotto {
     public Prodotto(){}
 
     public Prodotto(Long id, String titolo, Double prezzo, Integer annoDiPubblicazione, String descrizione,
-                    PiattaformaEnum piattaforma, List<Recensione> recensioni) {
+                    List <PiattaformaEnum> piattaforma, List<Recensione> recensioni) {
         this.id = id;
         this.titolo = titolo;
         this.prezzo = prezzo;
@@ -81,11 +83,11 @@ public class Prodotto {
         this.descrizione = descrizione;
     }
 
-    public PiattaformaEnum getPiattaforma() {
+    public List <PiattaformaEnum> getPiattaforma() {
         return piattaforma;
     }
 
-    public void setPiattaforma(PiattaformaEnum piattaforma) {
+    public void setPiattaforma(List <PiattaformaEnum> piattaforma) {
         this.piattaforma = piattaforma;
     }
 
