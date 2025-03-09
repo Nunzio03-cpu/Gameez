@@ -30,7 +30,7 @@ public class User {
     @JoinColumn(name = "recensione_id")
     private List<Recensione> recensioni;
     @Column(name = "status_user")
-    private boolean statusUser;
+    private boolean statusUser = true;
 
     public User (){}
 
@@ -46,7 +46,6 @@ public class User {
         this.citta = citta;
         this.indirizzo = indirizzo;
         this.recensioni = recensioni;
-        this.statusUser = true;
     }
 
     public Long getId() {
