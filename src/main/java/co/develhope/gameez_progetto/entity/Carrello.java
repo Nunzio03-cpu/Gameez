@@ -22,7 +22,7 @@ public class Carrello {
     @Column(name = "calcolo_totale")
     private Double calcoloTotale;
     @Column(name= "status_carrello")
-    private boolean statusCarrello;
+    private boolean statusCarrello = true;
 
 
 
@@ -32,7 +32,6 @@ public class Carrello {
         this.id = id;
         this.user = user;
         this.prodotti = prodotti;
-        this.statusCarrello = true;
     }
 
     public Long getId() {
