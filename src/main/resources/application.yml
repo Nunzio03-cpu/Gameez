@@ -3,7 +3,7 @@ spring:                                                                 # SOSTIT
   datasource:                                                           # test_gameez (se volete create sul database per testare)
     url: jdbc:mysql://localhost:3306/test_gameez                        # gameez_progetto (inserisci qui accanto il canceletto il nome del progetto originale)
     username: root
-    password:
+    password: Luka__1992
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:

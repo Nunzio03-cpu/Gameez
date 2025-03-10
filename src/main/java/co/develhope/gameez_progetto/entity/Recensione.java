@@ -11,20 +11,17 @@ public class Recensione {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column (name = "data")
-    private LocalDate data;
+    private LocalDate data = LocalDate.now();
     @Column(name = "commento")
     private String commento;
     @Column(name = "status_recensione")
-    private boolean statusUser;
+    private boolean statusRecensione = true;
 
     public Recensione() {}
 
-    public Recensione(Long id, LocalDate data, String commento) {
+    public Recensione(Long id, String commento) {
         this.id = id;
-        this.data = data;
         this.commento = commento;
-        this.statusUser = true;
-
     }
 
     public Long getId() {
@@ -51,11 +48,11 @@ public class Recensione {
         this.commento = commento;
     }
 
-    public boolean isStatusUser() {
-        return statusUser;
+    public boolean isStatusRecensione() {
+        return statusRecensione;
     }
 
-    public void setStatusUser(boolean statusUser) {
-        this.statusUser = statusUser;
+    public void setStatusRecensione(boolean statusRecensione) {
+        this.statusRecensione = statusRecensione;
     }
 }
