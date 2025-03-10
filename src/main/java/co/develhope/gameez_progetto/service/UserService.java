@@ -14,13 +14,11 @@ public class UserService {
     private UserRepository userRepository;
 
     public User createUser(User user){
-        User user1 = userRepository.save(user);
-        return user1;
+        return userRepository.save(user);
     }
 
     public List<User> getAllUsers(){
-        List<User> users = userRepository.findAllByStatusUserTrue();
-        return users;
+        return userRepository.findAllByStatusUserTrue();
     }
 
     public Optional<User> findById(Long id){

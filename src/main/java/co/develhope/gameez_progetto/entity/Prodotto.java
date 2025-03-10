@@ -27,7 +27,7 @@ public class Prodotto {
     @JoinColumn(name = "recensione_id")
     private List<Recensione> recensioni;
     @Column(name = "status_prodotto")
-    private boolean statusProdotto;
+    private boolean statusProdotto = true;
 
     public Prodotto(){}
 
@@ -40,7 +40,7 @@ public class Prodotto {
         this.descrizione = descrizione;
         this.piattaforma = piattaforma;
         this.recensioni = recensioni;
-        this.statusProdotto = true;
+
     }
 
     public Long getId() {
