@@ -13,9 +13,8 @@ public class Ordine {
     @OneToOne
     @JoinColumn(name = "carello", nullable = false)
     private Carrello carrello;
-    //todo IN DATA 04/03 SOLITAMENTE FUNZIONA CIT.NUNZIO
     @Column(name = "status_ordine")
-    private boolean statusOrdine;
+    private boolean statusOrdine = true;
 
     public Ordine() {
     }
@@ -24,7 +23,6 @@ public class Ordine {
         this.id = id;
         this.costoSpedizione = costoSpedizione;
         this.carrello = carrello;
-        this.statusOrdine = true;
     }
 
     public Long getId() {
