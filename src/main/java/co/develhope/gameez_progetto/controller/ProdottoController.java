@@ -21,13 +21,13 @@ public class ProdottoController {
         return ResponseEntity.ok(prodotto1);
     }
 
-    @GetMapping("/visualizza-prodotti-attivi")
+    @GetMapping("/get-all-prodotti-attivi")
     public ResponseEntity<List<Prodotto>> getAllProdotti() {
         List<Prodotto> prodotti = prodottoService.getAllProdotti();
         return ResponseEntity.ok(prodotti);
     }
 
-    @GetMapping("/cerca-per-id/{id}")
+    @GetMapping("/find-by-id/{id}")
     public ResponseEntity<Optional<Prodotto>> cercaPerId(@PathVariable Long id){
         Optional<Prodotto> prodottoOptional = prodottoService.cercaPerId(id);
         if (prodottoOptional.isPresent()){

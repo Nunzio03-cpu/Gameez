@@ -23,7 +23,7 @@ public class Prodotto {
     @Column(name = "piattaforma")
     @Enumerated(EnumType.STRING)
     private List<PiattaformaEnum> piattaforma;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "recensione_id")
     private List<Recensione> recensioni;
     @Column(name = "status_prodotto")

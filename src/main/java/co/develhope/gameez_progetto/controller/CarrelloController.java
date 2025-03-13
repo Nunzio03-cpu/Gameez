@@ -20,7 +20,7 @@ public class CarrelloController {
         return ResponseEntity.ok(carrelloService.createCarrello(carrello));
     }
 
-    @GetMapping("/get-all-carrelli")
+    @GetMapping("/get-all-carrelli-attivi")
     public ResponseEntity<List<Carrello>> gatAllCarrelli(){
         return ResponseEntity.ok(carrelloService.getAllCarrelli());
     }
