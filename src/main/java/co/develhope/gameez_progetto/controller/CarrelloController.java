@@ -35,6 +35,12 @@ public class CarrelloController {
         }
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Optional<Carrello>> updateCarrello(@PathVariable Long id, @RequestBody Carrello carrello) {
+        Optional<Carrello> updatedCarrello = carrelloService.updateCarrello(id, carrello);
+        return ResponseEntity.ok(updatedCarrello);
+    }
+
     @PutMapping("/delete-logical/{id}")
     public ResponseEntity<Optional<Carrello>> deleteLogical(@PathVariable Long id){
         Optional<Carrello> carrelloOptional = carrelloService.deleteLogical(id);

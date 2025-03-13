@@ -1,6 +1,7 @@
 package co.develhope.gameez_progetto.service;
 
 import co.develhope.gameez_progetto.entity.Carrello;
+import co.develhope.gameez_progetto.entity.Prodotto;
 import co.develhope.gameez_progetto.entity.Recensione;
 import co.develhope.gameez_progetto.repository.CarrelloRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,13 @@ public class CarrelloService {
     @Autowired
     private CarrelloRepository carrelloRepository;
 
+
     public Carrello createCarrello(Carrello carrello){
+        double totale = 0.0;
+        for (Prodotto prodotto : carrello.getProdotti()) {
+            totale += prodotto.getPrezzo();
+        }
+        carrello.setCalcoloTotale(totale);
         return carrelloRepository.save(carrello);
     }
 
@@ -31,9 +38,22 @@ public class CarrelloService {
         }
     }
 
-    //public Optional<Carrello> update(Long id, Carrello updateCarrello)
-    //questa entity non ha campi propri tali da aver necessità di un
-    //metodo put "update"
+    public Optional<Carrello> updateCarrello(Long id, Carrello updateCarrello) {
+        Optional<Carrello> carrelloOptional = carrelloRepository.findById(id);
+        if (carrelloOptional.isPresent()) {
+            Carrello carrello = carrelloOptional.get();
+            carrello.setProdotti(updateCarrello.getProdotti());
+            double totale = 0.0;
+            for (Prodotto prodotto : carrello.getProdotti()) {
+                totale += prodotto.getPrezzo();
+            }
+            carrello.setCalcoloTotale(totale);
+            return Optional.of(carrello);
+        }else{
+            return Optional.empty();
+        }
+    }
+
 
     public Optional<Carrello> deleteLogical(Long id){
         Optional<Carrello> carrelloOptional = carrelloRepository.findById(id);

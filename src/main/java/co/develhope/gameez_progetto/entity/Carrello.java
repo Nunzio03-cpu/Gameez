@@ -16,7 +16,7 @@ public class Carrello {
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "prodotto_id")
     private List<Prodotto> prodotti;
     @Column(name = "calcolo_totale")
