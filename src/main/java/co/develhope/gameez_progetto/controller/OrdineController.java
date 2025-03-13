@@ -21,7 +21,7 @@ public class OrdineController {
         return ResponseEntity.ok(ordine1);
     }
 
-    @GetMapping("/get-all-ordini")
+    @GetMapping("/get-all-ordini-attivi")
     public ResponseEntity<List<Ordine>> getAllOrdini() {
         List<Ordine> ordineList = ordineService.getAllOrdini();
         return ResponseEntity.ok(ordineList);

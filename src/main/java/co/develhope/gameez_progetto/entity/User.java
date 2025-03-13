@@ -26,7 +26,7 @@ public class User {
     private String citta;
     @Column(name = "indirizzo")
     private String indirizzo;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "recensione_id")
     private List<Recensione> recensioni;
     @Column(name = "status_user")
