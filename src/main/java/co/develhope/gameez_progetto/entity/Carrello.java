@@ -1,5 +1,6 @@
 package co.develhope.gameez_progetto.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
@@ -15,9 +16,11 @@ public class Carrello {
     private Long id;
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnoreProperties({ "nickname", "password", "dataNascita", "citta", "indirizzo", "statusUser", "recensioni"})
     private User user;
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "prodotto_id")
+    @JsonIgnoreProperties({"annoDiPubblicazione", "descrizione", "piattaforma", "recensioni"})
     private List<Prodotto> prodotti;
     @Column(name = "calcolo_totale")
     private Double calcoloTotale;

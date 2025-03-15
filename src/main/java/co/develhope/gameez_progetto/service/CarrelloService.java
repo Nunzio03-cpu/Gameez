@@ -3,7 +3,10 @@ package co.develhope.gameez_progetto.service;
 import co.develhope.gameez_progetto.entity.Carrello;
 import co.develhope.gameez_progetto.entity.Prodotto;
 import co.develhope.gameez_progetto.entity.Recensione;
+import co.develhope.gameez_progetto.entity.User;
 import co.develhope.gameez_progetto.repository.CarrelloRepository;
+import co.develhope.gameez_progetto.repository.UserRepository;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,8 @@ import java.util.Optional;
 public class CarrelloService {
     @Autowired
     private CarrelloRepository carrelloRepository;
+    @Autowired
+    private UserRepository userRepository;
 
 
     public Carrello createCarrello(Carrello carrello){

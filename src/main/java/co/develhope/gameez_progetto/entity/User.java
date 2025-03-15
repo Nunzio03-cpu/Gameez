@@ -1,5 +1,6 @@
 package co.develhope.gameez_progetto.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class User {
     private String indirizzo;
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "recensione_id")
+    @JsonIgnore
     private List<Recensione> recensioni;
     @Column(name = "status_user")
     private boolean statusUser = true;

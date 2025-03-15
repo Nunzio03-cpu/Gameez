@@ -1,5 +1,7 @@
 package co.develhope.gameez_progetto.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -16,12 +18,18 @@ public class Recensione {
     private String commento;
     @Column(name = "status_recensione")
     private boolean statusRecensione = true;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnoreProperties({ "nome", "cognome", "email", "password", "dataNascita", "citta", "indirizzo", "recensioni", "statusUser"}) // Evita di serializzare la lista delle recensioni dentro User
+    private User user;
+
 
     public Recensione() {}
 
-    public Recensione(Long id, String commento) {
+    public Recensione(Long id, String commento, User user) {
         this.id = id;
         this.commento = commento;
+        this.user = user;
     }
 
     public Long getId() {
@@ -55,4 +63,14 @@ public class Recensione {
     public void setStatusRecensione(boolean statusRecensione) {
         this.statusRecensione = statusRecensione;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
 }
