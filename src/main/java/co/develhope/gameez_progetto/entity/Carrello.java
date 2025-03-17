@@ -16,7 +16,7 @@ public class Carrello {
     private Long id;
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
-    @JsonIgnoreProperties({ "nickname", "password", "dataNascita", "citta", "indirizzo", "statusUser", "recensioni"})
+    @JsonIgnoreProperties({ "nickName", "password", "dataNascita", "citta", "indirizzo", "statusUser", "recensioni"})
     private User user;
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "prodotto_id")

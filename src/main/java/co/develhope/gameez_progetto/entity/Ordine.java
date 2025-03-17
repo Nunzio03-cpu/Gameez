@@ -17,7 +17,7 @@ public class Ordine {
     private String citta;
     @Column(name = "status_ordine")
     private boolean statusOrdine = true;
-
+// ordine che visualizza il prodotti agganciato a un utente
     public Ordine() {
     }
 
