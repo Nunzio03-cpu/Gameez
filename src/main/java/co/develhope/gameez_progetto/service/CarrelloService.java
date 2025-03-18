@@ -42,12 +42,10 @@ public class CarrelloService {
             return Optional.empty();
         }
     }
-
-    public Optional<Carrello> updateCarrello(Long id, Carrello updateCarrello) {
-        Optional<Carrello> carrelloOptional = carrelloRepository.findById(id);
+    //todo eliminare metodo
+    public Optional<Carrello> updateCarrello(Long id, Carrello carrello) {
+       /* Optional<Carrello> carrelloOptional = carrelloRepository.findById(id);
         if (carrelloOptional.isPresent()) {
-            Carrello carrello = carrelloOptional.get();
-            carrello.setProdotti(updateCarrello.getProdotti());
             double totale = 0.0;
             for (Prodotto prodotto : carrello.getProdotti()) {
                 totale += prodotto.getPrezzo();
@@ -57,6 +55,21 @@ public class CarrelloService {
         }else{
             return Optional.empty();
         }
+
+        */
+        Double totale = 0.0;
+        Optional<Carrello> carrelloOptional = carrelloRepository.findById(id);
+        if (carrelloOptional.isPresent()){
+            for(Prodotto prodotto : carrello.getProdotti()){
+                totale += prodotto.getPrezzo();
+            }
+            carrello.setCalcoloTotale(totale);
+            carrelloRepository.save(carrello);
+            return Optional.of(carrello);
+        } else {
+            return Optional.empty();
+        }
+
     }
 
 

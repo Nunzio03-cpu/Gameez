@@ -35,6 +35,7 @@ public class CarrelloController {
         }
     }
 
+    //todo eliminare api
     @PutMapping("/update/{id}")
     public ResponseEntity<Optional<Carrello>> updateCarrello(@PathVariable Long id, @RequestBody Carrello carrello) {
         Optional<Carrello> updatedCarrello = carrelloService.updateCarrello(id, carrello);
