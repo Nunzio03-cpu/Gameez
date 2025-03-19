@@ -28,6 +28,7 @@ public class Carrello {
     private List<Prodotto> prodotti = new ArrayList<>();
     @Column(name = "calcolo_totale")
     private Double calcoloTotale;
+    //todo cancellare status
     @Column(name= "status_carrello")
     private boolean statusCarrello = true;
 
@@ -81,6 +82,14 @@ public class Carrello {
 
     public void setStatusCarrello(boolean statusCarrello) {
         this.statusCarrello = statusCarrello;
+    }
+
+    public void addProdotto(Prodotto prodotto){
+        this.prodotti.add(prodotto);
+    }
+
+    public void removeProdotto(Prodotto prodotto){
+        this.prodotti.remove(prodotto);
     }
 }
 
