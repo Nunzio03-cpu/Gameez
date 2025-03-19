@@ -33,6 +33,7 @@ public class ProdottoService {
             prodottoOptional.get().setAnnoDiPubblicazione(updateProdotto.getAnnoDiPubblicazione());
             prodottoOptional.get().setDescrizione(updateProdotto.getDescrizione());
             prodottoOptional.get().setPiattaforma(updateProdotto.getPiattaforma());
+            prodottoOptional.get().setPrezzo(updateProdotto.getPrezzo());
             Prodotto prodotto = prodottoRepository.save(prodottoOptional.get());
             return Optional.of(prodotto);
         } else{

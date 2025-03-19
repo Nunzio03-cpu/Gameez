@@ -22,7 +22,7 @@ public class RecensioneController {
         return ResponseEntity.ok(recensione1);
     }
 
-    @GetMapping("/get-all-recensioni")
+    @GetMapping("/get-all-recensioni-attive")
     public ResponseEntity<List<Recensione>> getAllRecensioni() {
         List<Recensione> recensioneList = recensioneService.getAllRecensioni();
         return ResponseEntity.ok(recensioneList);
@@ -67,4 +67,5 @@ public class RecensioneController {
             return ResponseEntity.notFound().build();
         }
     }
+
 }

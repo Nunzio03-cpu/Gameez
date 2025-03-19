@@ -13,16 +13,19 @@ public class Ordine {
     @OneToOne
     @JoinColumn(name = "carello", nullable = false)
     private Carrello carrello;
+    @Column(name = "citta_di_spedizione")
+    private String citta;
     @Column(name = "status_ordine")
     private boolean statusOrdine = true;
-
+// ordine che visualizza il prodotti agganciato a un utente
     public Ordine() {
     }
 
-    public Ordine(Long id, Double costoSpedizione, Carrello carrello) {
+    public Ordine(Long id, Double costoSpedizione, Carrello carrello, String citta) {
         this.id = id;
         this.costoSpedizione = costoSpedizione;
         this.carrello = carrello;
+        this.citta = citta;
     }
 
     public Long getId() {
@@ -47,6 +50,14 @@ public class Ordine {
 
     public void setCarrello(Carrello carrello) {
         this.carrello = carrello;
+    }
+
+    public String getCitta() {
+        return citta;
+    }
+
+    public void setCitta(String citta) {
+        this.citta = citta;
     }
 
     public boolean isStatusOrdine() {

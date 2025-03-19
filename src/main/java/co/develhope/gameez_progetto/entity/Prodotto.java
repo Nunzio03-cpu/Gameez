@@ -1,5 +1,6 @@
 package co.develhope.gameez_progetto.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -23,8 +24,8 @@ public class Prodotto {
     @Column(name = "piattaforma")
     @Enumerated(EnumType.STRING)
     private List<PiattaformaEnum> piattaforma;
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "recensione_id")
+    @OneToMany(mappedBy = "prodotto", cascade = CascadeType.MERGE, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JsonIgnore
     private List<Recensione> recensioni;
     @Column(name = "status_prodotto")
     private boolean statusProdotto = true;
