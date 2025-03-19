@@ -6,6 +6,7 @@ import jakarta.persistence.Table;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,14 +19,19 @@ public class Carrello {
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnoreProperties({ "nickName", "password", "dataNascita", "citta", "indirizzo", "statusUser", "recensioni"})
     private User user;
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "prodotto_id")
+    @ManyToMany
+    @JoinTable(
+            name = "carrello_prodotto",
+            joinColumns = @JoinColumn(name = "carrello_id"),
+            inverseJoinColumns = @JoinColumn(name = "prodotto_id"))
     @JsonIgnoreProperties({"annoDiPubblicazione", "descrizione", "piattaforma", "recensioni"})
-    private List<Prodotto> prodotti;
+    private List<Prodotto> prodotti = new ArrayList<>();
     @Column(name = "calcolo_totale")
     private Double calcoloTotale;
     @Column(name= "status_carrello")
     private boolean statusCarrello = true;
+
+
 
 
 

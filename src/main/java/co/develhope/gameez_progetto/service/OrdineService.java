@@ -89,9 +89,16 @@ public class OrdineService {
     public Optional<Ordine> updateOrdine(Long id, Ordine ordine) {
         Optional<Ordine> optionalOrdine = ordineRepository.findById(id);
         if (optionalOrdine.isPresent()) {
-            optionalOrdine.get().setCostoSpedizione(ordine.getCostoSpedizione());
-            Ordine ordine1 = ordineRepository.save(optionalOrdine.get());
-            return Optional.of(ordine1);
+            Ordine ordineEsistente = optionalOrdine.get();
+
+            // Verifica se la città è stata modificata
+            if (ordine.getCitta() != null && !ordine.getCitta().equals(ordineEsistente.getCitta())) {
+                ordineEsistente.setCitta(ordine.getCitta());
+                // Aggiorna anche il costo di spedizione in base alla nuova città
+                ordineEsistente.setCostoSpedizione(calcolaCostoSpedizionePerCitta(ordine.getCitta()));
+            }
+            Ordine ordineAggiornato = ordineRepository.save(ordineEsistente);
+            return Optional.of(ordineAggiornato);
         } else {
             return Optional.empty();
         }
