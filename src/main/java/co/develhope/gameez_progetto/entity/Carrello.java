@@ -69,12 +69,8 @@ public class Carrello {
         this.calcoloTotale = calcoloTotale;
     }
 
-    public void addProdotto(Prodotto prodotto){
-        this.prodotti.add(prodotto);
-    }
 
-    public void removeProdotto(Prodotto prodotto){
-        this.prodotti.remove(prodotto);
-    }
+
+
 }
 

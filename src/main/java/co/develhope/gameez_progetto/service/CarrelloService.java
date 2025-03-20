@@ -5,6 +5,7 @@ import co.develhope.gameez_progetto.entity.Prodotto;
 import co.develhope.gameez_progetto.entity.Recensione;
 import co.develhope.gameez_progetto.entity.User;
 import co.develhope.gameez_progetto.repository.CarrelloRepository;
+import co.develhope.gameez_progetto.repository.ProdottoRepository;
 import co.develhope.gameez_progetto.repository.UserRepository;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class CarrelloService {
     private CarrelloRepository carrelloRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private ProdottoRepository prodottoRepository;
 
 
     public Carrello createCarrello(Carrello carrello) {
@@ -48,37 +51,37 @@ public class CarrelloService {
         }
     }
 
-    public Optional<Carrello> addProdottoToCarrello(Long id, Prodotto prodotto) {
-        Optional<Carrello> carrelloOptional = carrelloRepository.findById(id);
-        if (carrelloOptional.isPresent()) {
-
+    public Optional<Carrello> addProdottoToCarrello(Long idCarrello, Long idProdotto) {
+        Optional<Carrello> carrelloOptional = carrelloRepository.findById(idCarrello);
+        Optional<Prodotto> prodottoOptional = prodottoRepository.findById(idProdotto);
+        if (carrelloOptional.isPresent() && prodottoOptional.isPresent()) {
             Carrello carrelloEsistente = carrelloOptional.get();
-
-            carrelloEsistente.addProdotto(prodotto);
-
-            Carrello carrelloAggiornato = carrelloRepository.save(carrelloEsistente);
-
-            calcolaPrezzoTotale(carrelloAggiornato);
-
-            return Optional.of(carrelloAggiornato);
+            Prodotto prodotto = prodottoOptional.get();
+            // Rimuove il prodotto basandosi sull'oggetto esatto recuperato dal DB
+            carrelloEsistente.getProdotti().add(prodotto);
+            // Ricalcola il prezzo totale
+            calcolaPrezzoTotale(carrelloEsistente);
+            // Salva il carrello aggiornato
+            carrelloRepository.save(carrelloEsistente);
+            return Optional.of(carrelloEsistente);
         } else {
             return Optional.empty();
         }
     }
 
-    public Optional<Carrello> removeProdottoToCarrello(Long id, Prodotto prodotto) {
-        Optional<Carrello> carrelloOptional = carrelloRepository.findById(id);
-        if (carrelloOptional.isPresent()) {
-
+    public Optional<Carrello> removeProdottoToCarrello(Long idCarrello, Long idProdotto) {
+        Optional<Carrello> carrelloOptional = carrelloRepository.findById(idCarrello);
+        Optional<Prodotto> prodottoOptional = prodottoRepository.findById(idProdotto);
+        if (carrelloOptional.isPresent() && prodottoOptional.isPresent()) {
             Carrello carrelloEsistente = carrelloOptional.get();
-
-            carrelloEsistente.removeProdotto(prodotto);
-
-            Carrello carrelloAggiornato = carrelloRepository.save(carrelloEsistente);
-
-            calcolaPrezzoTotale(carrelloAggiornato);
-
-            return Optional.of(carrelloAggiornato);
+            Prodotto prodotto = prodottoOptional.get();
+            // Rimuove il prodotto basandosi sull'oggetto esatto recuperato dal DB
+            carrelloEsistente.getProdotti().remove(prodotto);
+            // Ricalcola il prezzo totale
+            calcolaPrezzoTotale(carrelloEsistente);
+            // Salva il carrello aggiornato
+            carrelloRepository.save(carrelloEsistente);
+            return Optional.of(carrelloEsistente);
         } else {
             return Optional.empty();
         }

@@ -36,9 +36,9 @@ public class CarrelloController {
         }
     }
 
-    @PutMapping("/add-prodotto/{id}")
-    public ResponseEntity<Optional<Carrello>> addProdotto(@PathVariable Long id, @RequestBody Prodotto prodotto) {
-        Optional<Carrello> updatedCarrello = carrelloService.addProdottoToCarrello(id, prodotto);
+    @PutMapping("/add-prodotto/{idCarrello}/{idProdotto}")
+    public ResponseEntity<Optional<Carrello>> addProdotto(@PathVariable Long idCarrello, @PathVariable Long idProdotto) {
+        Optional<Carrello> updatedCarrello = carrelloService.addProdottoToCarrello(idCarrello, idProdotto);
         if (updatedCarrello.isPresent()){
             return ResponseEntity.ok(updatedCarrello);
         } else {
@@ -46,9 +46,9 @@ public class CarrelloController {
         }
     }
 
-    @PutMapping("/remove-prodotto/{id}")
-    public ResponseEntity<Optional<Carrello>> removeProdotto(@PathVariable Long id, @RequestBody Prodotto prodotto) {
-        Optional<Carrello> updatedCarrello = carrelloService.removeProdottoToCarrello(id, prodotto);
+    @PutMapping("/remove-prodotto/{idCarrello}/{idProdotto}")
+    public ResponseEntity<Optional<Carrello>> removeProdotto(@PathVariable Long idCarrello, @PathVariable Long idProdotto) {
+        Optional<Carrello> updatedCarrello = carrelloService.removeProdottoToCarrello(idCarrello, idProdotto);
         if (updatedCarrello.isPresent()){
             return ResponseEntity.ok(updatedCarrello);
         } else {
