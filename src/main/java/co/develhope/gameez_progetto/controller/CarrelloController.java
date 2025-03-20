@@ -1,6 +1,7 @@
 package co.develhope.gameez_progetto.controller;
 
 import co.develhope.gameez_progetto.entity.Carrello;
+import co.develhope.gameez_progetto.entity.Prodotto;
 import co.develhope.gameez_progetto.service.CarrelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class CarrelloController {
         return ResponseEntity.ok(carrelloService.createCarrello(carrello));
     }
 
-    @GetMapping("/get-all-carrelli-attivi")
+    @GetMapping("/get-all-carrelli")
     public ResponseEntity<List<Carrello>> gatAllCarrelli(){
         return ResponseEntity.ok(carrelloService.getAllCarrelli());
     }
@@ -34,29 +35,22 @@ public class CarrelloController {
             return ResponseEntity.notFound().build();
         }
     }
-    //todo cancellare
-    //todo fare i metodi di add e remove(vedere CoarrelloService)
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Optional<Carrello>> updateCarrello(@PathVariable Long id, @RequestBody Carrello carrello) {
-        Optional<Carrello> updatedCarrello = carrelloService.updateCarrello(id, carrello);
-        return ResponseEntity.ok(updatedCarrello);
-    }
 
-    @PutMapping("/delete-logical/{id}")
-    public ResponseEntity<Optional<Carrello>> deleteLogical(@PathVariable Long id){
-        Optional<Carrello> carrelloOptional = carrelloService.deleteLogical(id);
-        if (carrelloOptional.isPresent()){
-            return ResponseEntity.ok(carrelloOptional);
+    @PutMapping("/add-prodotto/{id}")
+    public ResponseEntity<Optional<Carrello>> addProdotto(@PathVariable Long id, @RequestBody Prodotto prodotto) {
+        Optional<Carrello> updatedCarrello = carrelloService.addProdottoToCarrello(id, prodotto);
+        if (updatedCarrello.isPresent()){
+            return ResponseEntity.ok(updatedCarrello);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
-    @PutMapping("/active-status/{id}")
-    public ResponseEntity<Optional<Carrello>> activeStatus(@PathVariable Long id){
-        Optional<Carrello> carrelloOptional = carrelloService.activeStatus(id);
-        if (carrelloOptional.isPresent()){
-            return ResponseEntity.ok(carrelloOptional);
+    @PutMapping("/remove-prodotto/{id}")
+    public ResponseEntity<Optional<Carrello>> removeProdotto(@PathVariable Long id, @RequestBody Prodotto prodotto) {
+        Optional<Carrello> updatedCarrello = carrelloService.removeProdottoToCarrello(id, prodotto);
+        if (updatedCarrello.isPresent()){
+            return ResponseEntity.ok(updatedCarrello);
         } else {
             return ResponseEntity.notFound().build();
         }

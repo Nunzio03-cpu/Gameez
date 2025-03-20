@@ -22,7 +22,7 @@ public class CarrelloService {
     private UserRepository userRepository;
 
 
-    public Carrello createCarrello(Carrello carrello){
+    public Carrello createCarrello(Carrello carrello) {
         calcolaPrezzoTotale(carrello);
         return carrelloRepository.save(carrello);
     }
@@ -35,19 +35,20 @@ public class CarrelloService {
         carrello.setCalcoloTotale(totale);
     }
 
-    public List<Carrello> getAllCarrelli(){
-        return carrelloRepository.findAllByStatusCarrelloTrue();
+    public List<Carrello> getAllCarrelli() {
+        return carrelloRepository.findAll();
     }
 
-    public Optional<Carrello> findById(Long id){
+    public Optional<Carrello> findById(Long id) {
         Optional<Carrello> carrelloOptional = carrelloRepository.findById(id);
-        if (carrelloOptional.isPresent()){
+        if (carrelloOptional.isPresent()) {
             return carrelloOptional;
         } else {
             return Optional.empty();
         }
     }
-//todo aggiugere metodi add e remove su controller tramite put
+
+    //todo aggiugere metodi add e remove su controller tramite put
     public Optional<Carrello> addProdottoToCarrello(Long id, Prodotto prodotto) {
         Optional<Carrello> carrelloOptional = carrelloRepository.findById(id);
         if (carrelloOptional.isPresent()) {
@@ -80,31 +81,6 @@ public class CarrelloService {
 
             return Optional.of(carrelloAggiornato);
         } else {
-            return Optional.empty();
-        }
-    }
-
-    //todo cancellare logical e active
-    public Optional<Carrello> deleteLogical(Long id){
-        Optional<Carrello> carrelloOptional = carrelloRepository.findById(id);
-        if (carrelloOptional.isPresent()){
-            Carrello carrello = carrelloOptional.get();
-            carrello.setStatusCarrello(false);
-            carrelloRepository.save(carrello);
-            return  Optional.of(carrello);
-        }else{
-            return Optional.empty();
-        }
-    }
-
-    public Optional<Carrello> activeStatus(Long id){
-        Optional<Carrello> carrelloOptional = carrelloRepository.findById(id);
-        if (carrelloOptional.isPresent()){
-            Carrello carrello = carrelloOptional.get();
-            carrello.setStatusCarrello(true);
-            carrelloRepository.save(carrello);
-            return  Optional.of(carrello);
-        }else{
             return Optional.empty();
         }
     }
