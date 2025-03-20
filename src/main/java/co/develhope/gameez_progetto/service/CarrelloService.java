@@ -48,7 +48,6 @@ public class CarrelloService {
         }
     }
 
-    //todo aggiugere metodi add e remove su controller tramite put
     public Optional<Carrello> addProdottoToCarrello(Long id, Prodotto prodotto) {
         Optional<Carrello> carrelloOptional = carrelloRepository.findById(id);
         if (carrelloOptional.isPresent()) {
