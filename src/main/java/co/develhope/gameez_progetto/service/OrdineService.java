@@ -47,7 +47,6 @@ public class OrdineService {
 
     // Metodo per calcolare il costo di spedizione
     public Double calcolaCostoSpedizione(Long ordineId) {
-        // Recupera l'ordine
         Ordine ordine = getOrdineById(ordineId);
 
         if (ordine == null || ordine.getCarrello() == null || ordine.getCarrello().getUser() == null) {
